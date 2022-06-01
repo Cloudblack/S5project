@@ -1,0 +1,89 @@
+$ python convert.py --weights ./data/yolov3-tiny.weights --output ./checkpoints/yolov3-tiny.tf --tiny
+2021-12-17 10:09:51.575463: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cudart64_110.dll
+2021-12-17 10:10:02.754643: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library nvcuda.dll
+2021-12-17 10:10:02.802990: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1733] Found device 0 with properties: 
+pciBusID: 0000:01:00.0 name: NVIDIA GeForce GTX 1050 computeCapability: 6.1
+coreClock: 1.5185GHz coreCount: 5 deviceMemorySize: 2.00GiB deviceMemoryBandwidth: 104.43GiB/s
+2021-12-17 10:10:02.810415: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cudart64_110.dll
+2021-12-17 10:10:02.968899: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cublas64_11.dll
+2021-12-17 10:10:02.969158: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cublasLt64_11.dll
+2021-12-17 10:10:03.132941: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cufft64_10.dll
+2021-12-17 10:10:03.176007: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library curand64_10.dll
+2021-12-17 10:10:03.260411: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cusolver64_11.dll
+2021-12-17 10:10:03.313558: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cusparse64_11.dll
+2021-12-17 10:10:03.317350: I tensorflow/stream_executor/platform/default/dso_loader.cc:53] Successfully opened dynamic library cudnn64_8.dll
+2021-12-17 10:10:03.317632: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1871] Adding visible gpu devices: 0
+2021-12-17 10:10:03.460275: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2021-12-17 10:10:03.467465: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1733] Found device 0 with properties: 
+pciBusID: 0000:01:00.0 name: NVIDIA GeForce GTX 1050 computeCapability: 6.1
+coreClock: 1.5185GHz coreCount: 5 deviceMemorySize: 2.00GiB deviceMemoryBandwidth: 104.43GiB/s
+2021-12-17 10:10:03.467942: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1871] Adding visible gpu devices: 0
+2021-12-17 10:10:06.977042: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1258] Device interconnect StreamExecutor with strength 1 edge matrix:
+2021-12-17 10:10:06.977349: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1264]      0 
+2021-12-17 10:10:06.977619: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1277] 0:   N
+2021-12-17 10:10:07.026970: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1418] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 1316 MB memory) -> physical GPU (device: 0, name: NVIDIA GeForce GTX 1050, pci bus id: 0000:01:00.0, compute capability: 6.1)
+WARNING:tensorflow:From D:\conda\envs\p1-gpu\lib\site-packages\tensorflow\python\ops\array_ops.py:5049: calling gather (from tensorflow.python.ops.array_ops) with validate_indices is deprecated and will be removed in a future version.
+Instructions for updating:
+The `validate_indices` argument has no effect. Indices are always validated on CPU and never validated on GPU.
+W1217 10:10:07.693364 117744 deprecation.py:534] From D:\conda\envs\p1-gpu\lib\site-packages\tensorflow\python\ops\array_ops.py:5049: calling gather (from tensorflow.python.ops.array_ops) with validate_indices is deprecated and will be removed in a future version.
+Instructions for updating:
+The `validate_indices` argument has no effect. Indices are always validated on CPU and never validated on GPU.
+Model: "yolov3_tiny"
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to
+==================================================================================================
+input (InputLayer)              [(None, None, None,  0
+__________________________________________________________________________________________________
+yolo_darknet (Functional)       ((None, None, None,  6298480     input[0][0]
+__________________________________________________________________________________________________
+yolo_conv_0 (Functional)        (None, None, None, 2 263168      yolo_darknet[0][1]
+__________________________________________________________________________________________________
+yolo_conv_1 (Functional)        (None, None, None, 3 33280       yolo_conv_0[0][0]
+                                                                 yolo_darknet[0][0]
+__________________________________________________________________________________________________
+yolo_output_0 (Functional)      (None, None, None, 3 1312511     yolo_conv_0[0][0]
+__________________________________________________________________________________________________
+yolo_output_1 (Functional)      (None, None, None, 3 951295      yolo_conv_1[0][0]
+__________________________________________________________________________________________________
+yolo_boxes_0 (Lambda)           ((None, None, None,  0           yolo_output_0[0][0]
+__________________________________________________________________________________________________
+yolo_boxes_1 (Lambda)           ((None, None, None,  0           yolo_output_1[0][0]
+__________________________________________________________________________________________________
+yolo_nms (Lambda)               ((1, None, 4), (1, N 0           yolo_boxes_0[0][0]
+                                                                 yolo_boxes_0[0][1]
+                                                                 yolo_boxes_0[0][2]
+                                                                 yolo_boxes_1[0][0]
+                                                                 yolo_boxes_1[0][1]
+                                                                 yolo_boxes_1[0][2]
+==================================================================================================
+Total params: 8,858,734
+Trainable params: 8,852,366
+Non-trainable params: 6,368
+__________________________________________________________________________________________________
+I1217 10:10:07.708300 117744 convert.py:24] model created
+I1217 10:10:07.708300 117744 utils.py:45] yolo_darknet/conv2d bn
+I1217 10:10:07.710294 117744 utils.py:45] yolo_darknet/conv2d_1 bn
+I1217 10:10:07.712289 117744 utils.py:45] yolo_darknet/conv2d_2 bn
+I1217 10:10:07.714284 117744 utils.py:45] yolo_darknet/conv2d_3 bn
+I1217 10:10:07.717276 117744 utils.py:45] yolo_darknet/conv2d_4 bn
+I1217 10:10:07.725248 117744 utils.py:45] yolo_darknet/conv2d_5 bn
+I1217 10:10:07.812607 117744 utils.py:45] yolo_darknet/conv2d_6 bn
+I1217 10:10:08.121365 117744 utils.py:45] yolo_conv_0/conv2d_7 bn
+I1217 10:10:08.125590 117744 utils.py:45] yolo_output_0/conv2d_8 bn
+I1217 10:10:08.133227 117744 utils.py:45] yolo_output_0/conv2d_9 bias
+I1217 10:10:08.136221 117744 utils.py:45] yolo_conv_1/conv2d_10 bn
+I1217 10:10:08.138241 117744 utils.py:45] yolo_output_1/conv2d_11 bn
+I1217 10:10:08.161435 117744 utils.py:45] yolo_output_1/conv2d_12 bias
+Traceback (most recent call last):
+  File "convert.py", line 39, in <module>
+    app.run(main)
+  File "D:\conda\envs\p1-gpu\lib\site-packages\absl\app.py", line 312, in run
+    _run_main(main, args)
+  File "D:\conda\envs\p1-gpu\lib\site-packages\absl\app.py", line 258, in _run_main
+    sys.exit(main(argv))
+  File "convert.py", line 26, in main
+    load_darknet_weights(yolo, FLAGS.weights, FLAGS.tiny)
+  File "G:\Project1\S5project\yolov3tf2\yolov3_tf2\utils.py", line 74, in load_darknet_weights
+    assert len(wf.read()) == 0, 'failed to read all data'
+AssertionError: failed to read all data
