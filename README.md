@@ -14,7 +14,7 @@
 
 [프로젝트 발표 영상](https://drive.google.com/file/d/1vscrqJuMN-BxSvqw_aIyTrDQG4A9_yS3/view?usp=sharing)  
 
-[프로젝트 모델 시연 영상](https://drive.google.com/file/d/1l_o-tY_9UhB6lEQkZ-zV_ULD_wAsFGtL/view?usp=sharing)
+[프로젝트 모델 영상](https://drive.google.com/file/d/1l_o-tY_9UhB6lEQkZ-zV_ULD_wAsFGtL/view?usp=sharing)
 - 첫 번째 영상에 포함되어있는 부분입니다
 
 ### 데이터
